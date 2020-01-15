@@ -44,8 +44,12 @@ int main () {
 	                                        "Add One Second", "Exit Program"};
 	    const int BOX_WIDTH = 26;
 
-	// FIXME: Display current time
 	displayClocks(BOX_WIDTH, currentTime());
+
+	// Pause the program for one second and clear the screen
+	pauseProgram(2);
+
+	cout << "FIXME: Clear the screen" << endl << endl;
 
 	// Display the options menu
 	int userVal = displayMenu(MENU_OPTIONS, BOX_WIDTH);

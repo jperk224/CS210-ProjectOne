@@ -42,5 +42,6 @@ void displayMarqueeWithCount(std::string displayString, int spanLength, // Displ
 void displayClocks(int boxWidth, time_t timeToDisplay);                 // Display clocks (12 and 24 hour)
 int displayMenu(std::vector<std::string> menuOptions, int boxWidth);    // Display options menu and capture/return
                                                                         // user selection
+void pauseProgram(int pauseTime);										// Loop to suspend execution
 
 #endif /* CLOCKFUNCTIONS_H_ */

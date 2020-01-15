@@ -453,3 +453,46 @@ int displayMenu(vector<string> menuOptions, int boxWidth) {
 
     return userEntry;
 }
+
+/*
+ * Jeff Perkinson
+ * CS-210 J3528
+ * January 2020
+ *
+ * Create two clocks for ChadaTech that display simultaneously
+ * using ISO 8601 standards and allow for user input
+ */
+
+//#include <ctime>                // Library needed to get and manipulate
+//                                // date and time information
+//
+//// User-defined file inclusions
+//#include "clockFunctions.h"     // Header housing the function definitions for
+//                           	   // the functions defined in printFunctions.cpp
+//                           	   // and pause.cpp
+
+
+// The below program is not a print function and was originally
+// intended to be in a separate pauseProgram.cpp file, but that cause compilation
+// errors I could not fix, so I've included it here
+/**************************************
+ * pauseProgram() --> Pause the program
+ * for seconds passed as argument
+ * Best to go one second past intended
+ * pause time due to processing speed
+ * e.g. to pause one second pass in an argument
+ * of '2'.
+ *************************************/
+// A while loop is used because sleep() is OS specific and also not recommended
+// due to it being processor-speed dependent and the idea that programs
+// should not be hanging themselves
+// http://www.cplusplus.com/forum/beginner/76351/
+void pauseProgram(int pauseTime) {
+    time_t start = currentTime();
+    while(currentTime() < (start + pauseTime)) {    // Adding '2' seems to pause the program
+       continue;                                    // roughly 1 second; simply adding '1'
+    }                                               // processed to abruptly and the initial clock could not be read
+
+    return;
+}
+
