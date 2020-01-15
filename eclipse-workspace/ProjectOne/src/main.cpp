@@ -66,19 +66,40 @@ int main () {
 		// vector, those cases will need to be manually added to this switch
 		switch (userVal) {
 		case 1:
-			cout
-					<< "FIXME: Add one hour; wait; then clear screen; then display current time again.";
-			cout << endl << endl;
+			// Display clocks with one hour added, pause the program
+			// for one second, clear the screen, display the current time,
+			// pause for one second, clear the screen, display the options menu
+			// (options menu called to display after the break statement)
+			displayClocks(BOX_WIDTH, (currentTime() + (60 * 60)));
+			pauseProgram(2);
+			cout << "FIXME: Clear the screen" << endl << endl;
+			displayClocks(BOX_WIDTH, currentTime());
+			pauseProgram(2);
+			cout << "FIXME: Clear the screen" << endl << endl;
 			break;
 		case 2:
-			cout
-					<< "FIXME: Add one minute; wait; then clear screen; then display current time again.";
-			cout << endl << endl;
+			// Display clocks with one minute added, pause the program
+			// for one second, clear the screen, display the current time,
+			// pause for one second, clear the screen, display the options menu
+			// (options menu called to display after the break statement)
+			displayClocks(BOX_WIDTH, (currentTime() + 60));
+			pauseProgram(2);
+			cout << "FIXME: Clear the screen" << endl << endl;
+			displayClocks(BOX_WIDTH, currentTime());
+			pauseProgram(2);
+			cout << "FIXME: Clear the screen" << endl << endl;
 			break;
 		case 3:
-			cout
-					<< "FIXME: Add one second; then clear screen; then display current time again.";
-			cout << endl << endl;
+			// Display clocks with one second added, pause the program
+			// for one second, clear the screen, display the current time,
+			// pause for one second, clear the screen, display the options menu
+			// (options menu called to display after the break statement)
+			displayClocks(BOX_WIDTH, (currentTime() + 1));
+			pauseProgram(2);
+			cout << "FIXME: Clear the screen" << endl << endl;
+			displayClocks(BOX_WIDTH, currentTime());
+			pauseProgram(2);
+			cout << "FIXME: Clear the screen" << endl << endl;
 			break;
 		default: 				// catch an exit selection, do nothing and proceed to end the program
 			break; 				// no other entry should hit this default due to the exception
