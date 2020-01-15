@@ -14,6 +14,7 @@
                                 // http://www.cplusplus.com/reference/ctime/
 #include <string>               // Library needed to allow use of string type
 #include <vector>               // Library needed to allow use of vector type
+#include <windows.h>
 
 // User-defined file inclusions
 #include "clockFunctions.h"     // Header housing the function definitions for
@@ -33,23 +34,23 @@ using namespace std;
 int main () {
 
 	// Program global variables
-	    // Best practice is to only use constants
-	    // when declaring global variables to avoid
-	    // unintended side effects
-	    // All other variables should be declared within
-	    // the appropriate functions to limit their scope
+	// Best practice is to only use constants
+	// when declaring global variables to avoid
+	// unintended side effects
+	// All other variables should be declared within
+	// the appropriate functions to limit their scope
 
-	    // Menu Options String Array
-	    const vector<string> MENU_OPTIONS = { "Add One Hour", "Add One Minute",
-	                                        "Add One Second", "Exit Program"};
-	    const int BOX_WIDTH = 26;
+	// Menu Options String Array
+	const vector<string> MENU_OPTIONS = { "Add One Hour", "Add One Minute",
+	                                    "Add One Second", "Exit Program"};
+	const int BOX_WIDTH = 26;
+	string userTrigger;				// triggers the menu if the user presses a key
 
 	displayClocks(BOX_WIDTH, currentTime());
 
 	// Pause the program for one second and clear the screen
 	pauseProgram(2);
-
-	cout << "FIXME: Clear the screen" << endl << endl;
+	system("CLS");
 
 	// Display the options menu
 	int userVal = displayMenu(MENU_OPTIONS, BOX_WIDTH);

@@ -454,24 +454,6 @@ int displayMenu(vector<string> menuOptions, int boxWidth) {
     return userEntry;
 }
 
-/*
- * Jeff Perkinson
- * CS-210 J3528
- * January 2020
- *
- * Create two clocks for ChadaTech that display simultaneously
- * using ISO 8601 standards and allow for user input
- */
-
-//#include <ctime>                // Library needed to get and manipulate
-//                                // date and time information
-//
-//// User-defined file inclusions
-//#include "clockFunctions.h"     // Header housing the function definitions for
-//                           	   // the functions defined in printFunctions.cpp
-//                           	   // and pause.cpp
-
-
 // The below program is not a print function and was originally
 // intended to be in a separate pauseProgram.cpp file, but that cause compilation
 // errors I could not fix, so I've included it here
@@ -495,4 +477,3 @@ void pauseProgram(int pauseTime) {
 
     return;
 }
-
