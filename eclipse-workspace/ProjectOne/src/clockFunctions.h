@@ -21,14 +21,24 @@
  */
 
 /*
- * FIXME: File header guards
+ * Header file guards ensure the compiler only includes the contents of
+ * the header file one time.  #ifndef tells the compiler to only include the
+ * code between the #define and #endif instructs if CLOCKFUNCTION_H_ is not
+ * already defined.
+ * Zybooks 4.16: Separate Files
+ * https://learn.zybooks.com/zybook/SNHUCS210v1/chapter/4/section/16?content_resource_id=32106750
  */
 #ifndef CLOCKFUNCTIONS_H_
 #define CLOCKFUNCTIONS_H_
 
 time_t currentTime();                                                   // Return the current time
+// The namespaces below are scoped to the specific function declarations
+// Using 'namespace std' is considered bad practice, particularly
+// as scope expands, such as in a header file.
+// https://stackoverflow.com/questions/1452721/why-is-using-namespace-std-considered-bad-practice
+
 std::string displayClock24(time_t time);                                // Display time in the 24-hour format
-// FIXME: https://stackoverflow.com/questions/1452721/why-is-using-namespace-std-considered-bad-practice
+
 std::string displayClock12(time_t time);                                // Display time in 12-hour format
 void displayHorizontalBorder    (int length);                           // Display clock and menu upper
                                                                         // and lower horizontal borders

@@ -44,18 +44,15 @@ int main () {
 	const vector<string> MENU_OPTIONS = { "Add One Hour", "Add One Minute",
 	                                    "Add One Second", "Exit Program"};
 	const int BOX_WIDTH = 26;
-	string userTrigger;				// triggers the menu if the user presses a key
 
 	displayClocks(BOX_WIDTH, currentTime());
 
 	// Pause the program for one second and clear the screen
 	pauseProgram(2);
-	system("CLS");
+	system("CLS");	// Note this does not seem to work in Eclipse console
 
 	// Display the options menu
 	int userVal = displayMenu(MENU_OPTIONS, BOX_WIDTH);
-	// FIXME: somehow this display need to be wrapped in a time that clears
-	// the screen if no selection is made?
 
 	// continue looping through the program until the user opts to quit
 	// a while loop is used here instead of a for loop because the number
@@ -73,10 +70,10 @@ int main () {
 			// (options menu called to display after the break statement)
 			displayClocks(BOX_WIDTH, (currentTime() + (60 * 60)));
 			pauseProgram(2);
-			cout << "FIXME: Clear the screen" << endl << endl;
+			system("CLS");
 			displayClocks(BOX_WIDTH, currentTime());
 			pauseProgram(2);
-			cout << "FIXME: Clear the screen" << endl << endl;
+			system("CLS");
 			break;
 		case 2:
 			// Display clocks with one minute added, pause the program
@@ -85,10 +82,10 @@ int main () {
 			// (options menu called to display after the break statement)
 			displayClocks(BOX_WIDTH, (currentTime() + 60));
 			pauseProgram(2);
-			cout << "FIXME: Clear the screen" << endl << endl;
+			system("CLS");
 			displayClocks(BOX_WIDTH, currentTime());
 			pauseProgram(2);
-			cout << "FIXME: Clear the screen" << endl << endl;
+			system("CLS");
 			break;
 		case 3:
 			// Display clocks with one second added, pause the program
@@ -97,10 +94,10 @@ int main () {
 			// (options menu called to display after the break statement)
 			displayClocks(BOX_WIDTH, (currentTime() + 1));
 			pauseProgram(2);
-			cout << "FIXME: Clear the screen" << endl << endl;
+			system("CLS");
 			displayClocks(BOX_WIDTH, currentTime());
 			pauseProgram(2);
-			cout << "FIXME: Clear the screen" << endl << endl;
+			system("CLS");
 			break;
 		default: 				// catch an exit selection, do nothing and proceed to end the program
 			break; 				// no other entry should hit this default due to the exception
