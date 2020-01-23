@@ -27,9 +27,6 @@ using namespace std;
 // PrintFunctions.cpp in lieu of simple declarations/stubs above main()
 // with definitions below main()
 // This approach was chosen for ease of maintenance/portability
-// If future versions of this program require a change to the function
-// name or parameters, setting the stubs above main() creates an additional
-// place in the code in which they must be modified that may be overlooked
 
 int main () {
 
@@ -49,7 +46,8 @@ int main () {
 
 	// Pause the program for one second and clear the screen
 	pauseProgram(2);
-	system("CLS");	// Note this does not seem to work in Eclipse console
+	system("CLS");	// Note this does not seem to work in Eclipse or Visual Studio IDEs
+					// but I found no other way to clear the screen, so I've included it here
 
 	// Display the options menu
 	int userVal = displayMenu(MENU_OPTIONS, BOX_WIDTH);
@@ -60,7 +58,7 @@ int main () {
 	while (userVal != 4) {
 		// use a switch statement for easier readability than multiple if-else
 		// this is likely the most manually intensive portion of the program
-		// to maintain; as options are add to/removed from the MENU_OPTIONS
+		// to maintain; as options are added to/removed from the MENU_OPTIONS
 		// vector, those cases will need to be manually added to this switch
 		switch (userVal) {
 		case 1:

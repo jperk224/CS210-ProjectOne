@@ -10,13 +10,12 @@
 /*
  * Header file for function declarations
  * The compiler does not see the function definitions in printFunctions.cpp
- * or pauseProgram.cpp while processing the main file because
+ * while processing the main file because
  * those definitions are in separate files (e.g printFunctions.cpp).
  * Function declarations must be provided before main() in main.cpp
  * so the compiler knows about the functions to compile calls to them.
  * Instead of typing the declarations directly above main(),
  * a programmer can provide the function declarations in a header file
- * such as this one.
  * (Zybooks Programming Languages 4.16 Separate Files)
  */
 
@@ -24,17 +23,17 @@
  * Header file guards ensure the compiler only includes the contents of
  * the header file one time.  #ifndef tells the compiler to only include the
  * code between the #define and #endif instructs if CLOCKFUNCTION_H_ is not
- * already defined.
- * Zybooks 4.16: Separate Files
- * https://learn.zybooks.com/zybook/SNHUCS210v1/chapter/4/section/16?content_resource_id=32106750
+ * already defined
+ * (Zybooks Programming Languages 4.16: Separate Files)
  */
+
 #ifndef CLOCKFUNCTIONS_H_
 #define CLOCKFUNCTIONS_H_
 
 time_t currentTime();                                                   // Return the current time
 // The namespaces below are scoped to the specific function declarations
 // Using 'namespace std' is considered bad practice, particularly
-// as scope expands, such as in a header file.
+// in a header file that can potentially be used in multiple other files
 // https://stackoverflow.com/questions/1452721/why-is-using-namespace-std-considered-bad-practice
 
 std::string displayClock24(time_t time);                                // Display time in the 24-hour format

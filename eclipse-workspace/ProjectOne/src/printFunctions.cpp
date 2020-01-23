@@ -16,11 +16,14 @@
 #include <stdexcept>            // Library needed for the runtime_error object to be
                                 // thrown/caught in exception handling cases
 
+// namespaces provide scope to certain identifiers to avoid ambiguity
+// and collision
+// https://www.learncpp.com/cpp-tutorial/2-9-naming-collisions-and-an-introduction-to-namespaces/
 using namespace std;
 
 // Function to return current time
 // The return value should be passed into
-// the functions that display current time,
+// the subsequent functions used to display current time,
 // add one second, or add one hour
 /**************************************
  * currentTime() --> return the current
@@ -41,7 +44,7 @@ time_t currentTime() {                  // time_t is a C++ arithmetic type from
  *************************************/
 string displayClock24(time_t time) {                    // Parameter is of type time_t to allow
                                                         // manipulated time to be passed in (e.g. time + 1 second)
-    string timeAsString = asctime(localtime(&time));    // localtime converts time_t argument (e.g. given time since
+    string timeAsString = asctime(localtime(&time));    // localtime converts time_t argument (i.e. given time since
                                                         // epoch (1/1/1970)) into calendar time, expressed in
                                                         // local time (https://en.cppreference.com/w/cpp/chrono/c/localtime)
                                                         // Argument to localtime must be a pointer to a
@@ -49,12 +52,12 @@ string displayClock24(time_t time) {                    // Parameter is of type 
                                                         // is passed by reference into localtime()
                                                         // asctime converts calendar time argument (e.g.
                                                         // localtime(&time)) into a string representing the
-                                                        // calendar time argument
+                                                        // calendar time
 
-    // asctime() returns a fixed 25-character string formatted in a fixed way
+    // asctime() returns a fixed 25-character string formatted in a preset way
     // (e.g. 3-letter day, 3-letter month, 2-digit day of month, 2-digit hour, etc.)
     // (https://en.cppreference.com/w/cpp/chrono/c/asctime)
-    // Allowing the use of substr() to extract the time
+    // Use substr() to extract the time
     // The timestamp starts at index 11 and is 8 characters in length
     string timeStamp = timeAsString.substr(11,8);
 
@@ -191,16 +194,16 @@ void displayMarquee(string displayString, int spanLength, bool isCentered=true) 
     const int LEADING_WHITE_SPACE = 1;      // Space between border character and element display
                                             // use if isCentered is false
     const char BORDER_CHAR = '*';
-    const int SIDE_CHAR_COUNT = 1;          // Utilizes 1 character per side per the spec
+    const int SIDE_CHAR_COUNT = 1;          // Utilizes 1 character per vertical side of the horizontal span per the spec
                                             // and assumes equal characters per side
     int innerWhiteSpace;                    // holds length of inner whitespace; varies by branch
     int leftWhiteSpace;                     // holds length of left whitespace; used in centered branch
     int rightWhiteSpace;                    // holds length of right whitespace; used in centered branch
 
-    // function parameters drive loop iterations
+    // function parameters and constants drive loop iterations
     // this approach makes maintenance/adjustment
     // easier as loops/output can be scaled by changing the
-    // arguments to the function call
+    // arguments to the function call or const values
 
     // display leading border character(s)
     for (int i = 0; i < SIDE_CHAR_COUNT; ++i) {
@@ -229,7 +232,7 @@ void displayMarquee(string displayString, int spanLength, bool isCentered=true) 
         // Because the marquee is centered, there's no LEADING_WHITE_SPACE
         // to factor into the innerWhiteSpace calculation
         innerWhiteSpace = spanLength - (SIDE_CHAR_COUNT * 2) - displayString.size();
-        // split per-side white space into two separate variables
+        // split innerWhiteSpace into two separate variables
         // to account for potential truncation from int division
         // while this may result in each side's white space not being equivalent
         // (e.g. one side > other due to truncation) it ensures
@@ -237,7 +240,7 @@ void displayMarquee(string displayString, int spanLength, bool isCentered=true) 
         leftWhiteSpace = innerWhiteSpace / 2;
         rightWhiteSpace = innerWhiteSpace - leftWhiteSpace;
 
-        // display marquee output
+        // display marquee output (i.e. full horizontal span)
         // display left side white space
         for (int i = 0; i < leftWhiteSpace; ++i) {
             cout << " ";
@@ -269,7 +272,8 @@ void displayMarquee(string displayString, int spanLength, bool isCentered=true) 
  * to limit the number of parameters needed,
  * as good practice suggests to not go
  * beyond 3-4 parameters for a given function
- * https://softwareengineering.stackexchange.com/questions/145055/are-there-guidelines-on-how-many-parameters-a-function-should-accept
+ * (https://softwareengineering.stackexchange.com/questions/145055/
+ * are-there-guidelines-on-how-many-parameters-a-function-should-accept)
  *************************************/
 
 void displayMarqueeWithCount(string displayString, int spanLength,      // isCentered defaults to false to support
@@ -277,12 +281,12 @@ void displayMarqueeWithCount(string displayString, int spanLength,      // isCen
     // spanLength is desired length of horizontal span marquee and white space
     // (i.e. the entire line in the box.)
     // numberIdentifier is used to hold the 'count' or 'identifier'
-    // to display if showCount is true
+    // to display
     const string SPACE_BETWEEN = " ";                                    // To adjust space between identifier and displayString
     const char MARQUEE_CHAR = '-';
 
     // using to_string() to convert the index count to a string causes an error
-    // that appears to be a compiler bug?  With the best solution being to
+    // that appears to be a compiler bug, with the best solution being to
     // downgrade the compiler.
     // https://stackoverflow.com/questions/43294488/mingw-g-multiple-definition-of-vsnprintf-when-using-to-string
     // So instead I converted the index count to a string
@@ -319,7 +323,7 @@ void displayClocks(int boxWidth, time_t timeToDisplay) {
     // boxWidth represents the width of a box housing one clock, output should
     // be two boxes overall
 
-    const int BOX_GAP = 6;          // Vertical whitespace between each clock box
+    const int BOX_GAP = 6;          // Horizontal whitespace between each clock box
     const string CLOCK12_TITLE = "12-Hour Clock";
     const string CLOCK24_TITLE = "24-Hour Clock";
     const string CLOCK12 = displayClock12(timeToDisplay);
@@ -359,7 +363,8 @@ void displayClocks(int boxWidth, time_t timeToDisplay) {
     cout << endl;
 
     // Display actual clocks
-    for (int i = 0; i < 2; ++i) {
+    for (int i = 0; i < 2; ++i) {	// iteration count had to be hardcoded due to failure to
+    								// build vectors using VECTOR_SIZE const int as discussed above
         displayMarquee(CLOCK12_VECTOR.at(i), boxWidth, true);
         cout << boxGap;
         displayMarquee(CLOCK24_VECTOR.at(i), boxWidth, true);
@@ -394,7 +399,7 @@ int displayMenu(vector<string> menuOptions, int boxWidth) {
     // boxWidth serves as spanLength argument for displayMarqueeWithCount()
 
     bool validEntry;            // flag to drive exception handling
-    string userEntryAsString;   // store user input to conver to int
+    string userEntryAsString;   // store user input to convert to int
     int userEntry;              // store user input as int to return
 
     // exception handling to validate user selection
